@@ -25,7 +25,6 @@ LiDAR Sensor ─► [deserializer_gc] ─► [proxcore_fir_filter] ─► [thres
 └──────── [config_regs_gc] ◄──── SPI bus
 baud_div coeff0-7 threshold
 
-text
 
 | Module | Function |
 |---|---|
@@ -90,34 +89,26 @@ The same silicon serves multiple markets via SPI configuration at power-on:
 | Industrial robot cell | 1.5m (96) | 230,400 | 108 |
 
 ## Repository Structure
-proxcore/
-├── rtl/
+proxcore/├── rtl/
+         │ ├── project_macro.sv # SP26 shuttle GPIO wrapper
+         │ ├── proxcore_top.sv # Top-level integration
+         │ ├── deserializer_gc.sv # UART deserializer (runtime baud rate)
+         │ ├── proxcore_fir_filter.sv # 16-tap symmetric FIR lowpass filter
+         │ ├── threshold_fsm.sv # 3-sample debounced threshold FSM
+         │ └── config_regs_gc.sv # SPI configuration registers (+baud_div)
+         ├── tb/
+         │ ├── tb_proxcore_top.sv # Integration testbench (7 tests)
+         │ ├── output_test_filter.sv # FIR filter testbench (6 tests) 
+         │ ├── config_regs_tb.sv # SPI config registers testbench (14 tests)
+         │ ├── tb_threshold_fsm.sv # Threshold FSM testbench (13 tests)
+         │ └── deserializer_tb.sv # UART deserializer testbench (5 tests)
+         ├── docs/
+         │ └── proxcore_report.pdf # Full design report
+         ├── constraints/
+         │ └── (OpenLane configuration files)
+         └── README.md
 
-│ ├── project_macro.sv # SP26 shuttle GPIO wrapper
 
-│ ├── proxcore_top.sv # Top-level integration
-
-│ ├── deserializer_gc.sv # UART deserializer (runtime baud rate)
-
-│ ├── proxcore_fir_filter.sv # 16-tap symmetric FIR lowpass filter
-
-│ ├── threshold_fsm.sv # 3-sample debounced threshold FSM
-
-│ └── config_regs_gc.sv # SPI configuration registers (+baud_div)
-
-├── tb/
-│ ├── tb_proxcore_top.sv # Integration testbench (7 tests)
-│ ├── output_test_filter.sv # FIR filter testbench (6 tests)
-│ ├── config_regs_tb.sv # SPI config registers testbench (14 tests)
-│ ├── tb_threshold_fsm.sv # Threshold FSM testbench (13 tests)
-│ └── deserializer_tb.sv # UART deserializer testbench (5 tests)
-├── docs/
-│ └── proxcore_report.pdf # Full design report
-├── constraints/
-│ └── (OpenLane configuration files)
-└── README.md
-
-text
 
 ## Verification Summary
 
