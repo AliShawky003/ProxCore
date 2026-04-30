@@ -24,7 +24,7 @@ vehicles without any hardware modification.
 
 | Metric | Value |
 |---|---|
-| Process | SkyWater Sky130B (130 nm) |
+| Process | SkyWater Sky130 (130 nm) |
 | Die area | 0.908 mm² (880 × 1031.66 µm) |
 | Total power | 1.48 mW @ 25 MHz / 1.8 V |
 | Standard cells | 39,480 |
@@ -55,7 +55,7 @@ LiDAR ──► [ deserializer_gc ] ──► [ proxcore_fir_filter ] ──► 
 
 | Parameter | Value |
 |---|---|
-| Technology | SkyWater Sky130B (130 nm) |
+| Technology | SkyWater Sky130 (130 nm) |
 | Clock frequency | 25 MHz (single domain) |
 | Supply voltage | 1.8 V |
 | Active GPIO pins | 6 inputs + 2 outputs (`clk`/`rst_n` provided by shuttle) |
@@ -259,7 +259,7 @@ Any UART-based LiDAR sensor with 16-bit distance output:
 | Benewake TF02-Pro | 0.1 – 40 m | 115,200 | Medium range, industrial cells |
 | Benewake TF03 | 0.1 – 180 m | 115,200 | Long range, automotive/tram |
 
-> **Note:** Sky130B I/O operates at 1.8 V. A 3.3 V → 1.8 V level
+> **Note:** Sky130 I/O operates at 1.8 V. A 3.3 V → 1.8 V level
 > shifter (e.g., TI SN74LVC1T45) is required between the sensor UART
 > TX line and the chip's `uart_rx` pad. See the design report for
 > wiring diagrams.
