@@ -2,7 +2,7 @@
 
 **A Runtime-Configurable Proximity Safety Co-Processor in SkyWater Sky130B**
 
-Silicon Sprint SP26 — Faculty of Engineering, Ain Shams University, Cairo, Egypt
+Silicon Sprint SP26 — American University in Cairo, Cairo, Egypt
 
 ---
 
