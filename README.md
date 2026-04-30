@@ -89,24 +89,44 @@ The same silicon serves multiple markets via SPI configuration at power-on:
 | Industrial robot cell | 1.5m (96) | 230,400 | 108 |
 
 ## Repository Structure
-proxcore/├── rtl/
-         │ ├── project_macro.sv # SP26 shuttle GPIO wrapper
-         │ ├── proxcore_top.sv # Top-level integration
-         │ ├── deserializer_gc.sv # UART deserializer (runtime baud rate)
-         │ ├── proxcore_fir_filter.sv # 16-tap symmetric FIR lowpass filter
-         │ ├── threshold_fsm.sv # 3-sample debounced threshold FSM
-         │ └── config_regs_gc.sv # SPI configuration registers (+baud_div)
-         ├── tb/
-         │ ├── tb_proxcore_top.sv # Integration testbench (7 tests)
-         │ ├── output_test_filter.sv # FIR filter testbench (6 tests) 
-         │ ├── config_regs_tb.sv # SPI config registers testbench (14 tests)
-         │ ├── tb_threshold_fsm.sv # Threshold FSM testbench (13 tests)
-         │ └── deserializer_tb.sv # UART deserializer testbench (5 tests)
-         ├── docs/
-         │ └── proxcore_report.pdf # Full design report
-         ├── constraints/
-         │ └── (OpenLane configuration files)
-         └── README.md
+
+proxcore/
+├── rtl/
+│   ├── project_macro.sv           # SP26 shuttle GPIO wrapper
+│   ├── proxcore_top.sv            # Top-level integration
+│   ├── deserializer_gc.sv         # UART deserializer (runtime baud rate)
+│   ├── proxcore_fir_filter.sv     # 16-tap symmetric FIR lowpass filter
+│   ├── threshold_fsm.sv           # 3-sample debounced threshold FSM
+│   └── config_regs_gc.sv          # SPI configuration registers (+baud_div)
+│
+├── tb/
+│   ├── tb_proxcore_top.sv         # Integration testbench (7 tests)
+│   ├── output_test_filter.sv      # FIR filter testbench (6 tests)
+│   ├── config_regs_tb.sv          # SPI config registers testbench (14 tests)
+│   ├── tb_threshold_fsm.sv        # Threshold FSM testbench (13 tests)
+│   └── deserializer_tb.sv         # UART deserializer testbench (5 tests)
+│
+├── gds/
+│   ├── project_macro.gds          # Final signed-off GDSII layout
+│   ├── project_macro.lef          # Abstract LEF for shuttle integration
+│   └── project_macro.nl.v         # Post-synthesis gate-level netlist
+│
+├── metrics/
+│   ├── metrics.json               # Complete OpenLane signoff metrics
+│   ├── sta_summary.txt            # STA results across all PVT corners
+│   ├── power_summary.txt          # Power breakdown (1.48 mW total)
+│   ├── drc.magic.rpt              # Magic + KLayout DRC reports (0 errors)
+│   └── lvs.netgen.rpt             # Netgen LVS report (0 mismatches)
+│
+├── openlane files/
+│   ├── config.json                # Main OpenLane 2 flow configuration
+│   ├── pnr.sdc                    # PnR script
+│   └── signoff.sdc                # Signoff script
+│
+├── documentation/
+│   ├── ProxCore Report.pdf        # ProxCore documentation
+│
+└── README.md                      # This file
 
 
 
